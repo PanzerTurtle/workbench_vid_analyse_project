@@ -13,7 +13,7 @@ def extract_frames(video_path, out_dir, interval_sec=5,  use_motion=True):
     if not cap.isOpened():
         raise RuntimeError(f"Cannot open video: {video_path}")
 
-    fps = cap.get(cv2.CAP_PROP_FPS)
+    fps = cap.get(cv2.CAP_PROP_FPS) # find native fps
     frame_interval = int(fps * interval_sec)
 
     prev_frame = None
@@ -57,7 +57,6 @@ def extract_frames(video_path, out_dir, interval_sec=5,  use_motion=True):
 
     print(f"Saved: {saved}, Skipped: {skipped}")
     return timestamps
-
 
 
 def detect_motion(frame1, frame2, threshold=8000) -> bool:
