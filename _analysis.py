@@ -2,6 +2,7 @@ import os
 import ollama
 from _utility_function import parse_json_response, format_timestamp
 
+
 def analyze_frame_worker(frame, timestamps, extracted_frames_dir, system_context, user_context, ollama_options):
     path = os.path.join(extracted_frames_dir, frame)
 

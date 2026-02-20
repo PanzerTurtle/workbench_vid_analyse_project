@@ -8,6 +8,7 @@ from _frame_extract import *
 from _utility_function import *
 from _write_reports import *
 
+
 INPUT_VIDEO = "./vid_samples/house_cam.mp4"
 
 FRAME_INTERVAL = 3
