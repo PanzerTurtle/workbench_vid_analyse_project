@@ -2,8 +2,10 @@ import os
 import ollama
 from _utility_function import parse_json_response, format_timestamp
 
+from _config import SYSTEM_CONTEXT, USER_CONTEXT, OLLAMA_OPTIONS
 
-def analyze_frame_worker(frame, timestamps, extracted_frames_dir, system_context, user_context, ollama_options):
+
+def analyze_frame_worker(frame, timestamps, extracted_frames_dir):
     path = os.path.join(extracted_frames_dir, frame)
 
     if not os.path.exists(path):
@@ -13,10 +15,10 @@ def analyze_frame_worker(frame, timestamps, extracted_frames_dir, system_context
         response = ollama.chat(
             model="llava:7b",
             messages=[
-                {"role": "system", "content": system_context},
-                {"role": "user", "content": user_context, "images": [path]},
+                {"role": "system", "content": SYSTEM_CONTEXT},
+                {"role": "user", "content": USER_CONTEXT, "images": [path]},
             ],
-            options=ollama_options,
+            options=OLLAMA_OPTIONS,
         )
 
         parsed = parse_json_response(response["message"]["content"])
@@ -32,3 +34,4 @@ def analyze_frame_worker(frame, timestamps, extracted_frames_dir, system_context
 
     except Exception as e:
         return None, str(e)
+    

@@ -37,7 +37,7 @@ def generate_report(events: list, output):
     print(f"Report saved: {output}")
     
 
-def json2html_convert(json_input: list, html_output: str):
+def json2html_convert_event_only(json_input: list, html_output: str):
     with open(json_input, "r") as f:
         events = json.load(f)
 
@@ -62,3 +62,17 @@ def json2html_convert(json_input: list, html_output: str):
     print(f"Converted {json_input} to {html_output} sucessfully.")
     
   
+def json2html_convert_all(json_input: list, html_output: str):
+    with open(json_input, "r") as f:
+        events = json.load(f)
+
+    with open(html_output, "w") as f:
+        f.write("<html><body>\n")
+        f.write(json2html.convert(events))
+        f.write("\n</body></html>")
+    
+    print(f"Converted {json_input} to {html_output} sucessfully.")
+    
+    
+if __name__ == "__main__":
+    json2html_convert_all("./reports/events_raw.json", "./reports/events_report_table.html")

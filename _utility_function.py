@@ -41,3 +41,4 @@ def log_parse_error(frame: str, error: str, output="error.log"):
         f.write(f"Time: {datetime.now():%Y-%m-%d %H:%M:%S}\n")
         f.write("-" * 60 + "\n")
         f.write(f"{error}\n\n")
+        
