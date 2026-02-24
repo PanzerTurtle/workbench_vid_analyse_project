@@ -9,7 +9,7 @@ from _utility_function import *
 from _write_reports import *
 
 
-INPUT_VIDEO = "./vid_samples/house_cam.mp4"
+INPUT_VIDEO = "./vid_samples/blue_car.mp4"
 
 FRAME_INTERVAL = 3
 USE_MOTION_DETECTION = True
@@ -125,7 +125,7 @@ if __name__ == "__main__":
 
     events, errors = [], 0
 
-    # analysis threadpool block
+    # analysis processpool
     with ProcessPoolExecutor() as executor:
         futures = {
             executor.submit(analyze_frame_worker, f, timestamps, EXTRACTED_FRAMES_DIR, SYSTEM_CONTEXT, USER_CONTEXT, OLLAMA_OPTIONS): f for f in frames
@@ -142,7 +142,6 @@ if __name__ == "__main__":
                 errors += 1
                 log_parse_error(frame, error, output=PARSE_ERROR_LOG)
                 print(f"[FAIL] {i}/{len(frames)} {frame}")
-    # analysis threadpool block
 
     events.sort(key=lambda e: e["timestamp"])
 
