@@ -1,17 +1,16 @@
-import os
-import json
-import time
-from concurrent.futures import ProcessPoolExecutor, as_completed
-
-from _analysis import analyze_frame_worker
-from _file_explorer import select_file
-from _frame_extract import *
-from _utility_function import read_num_in_filename, log_parse_error
-from _write_reports import json2html_convert_all
-from _config import EXTRACTED_FRAMES_DIR, FRAME_INTERVAL, PARSE_ERROR_LOG, OUTPUT_JSON, OUTPUT_HTML
-
-
 if __name__ == "__main__":
+    import os
+    import json
+    import time
+    from concurrent.futures import ProcessPoolExecutor, as_completed
+
+    from _analysis import analyze_frame_worker
+    from _file_explorer import select_file
+    from _frame_extract import *
+    from _utility_function import read_num_in_filename, log_parse_error
+    from _write_reports import json2html_convert_all
+    from _config import EXTRACTED_FRAMES_DIR, FRAME_INTERVAL, PARSE_ERROR_LOG, OUTPUT_JSON, OUTPUT_HTML
+    
     INPUT_VIDEO = select_file(INITIAL_DIR="./vid_samples")
     # INPUT_VIDEO = "./vid_samples/night_front_door.mp4"
     

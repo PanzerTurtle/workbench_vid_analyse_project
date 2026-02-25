@@ -1,7 +1,7 @@
 import os
 import ollama
-from _utility_function import parse_json_response, format_timestamp
 
+from _utility_function import parse_json_response, format_timestamp
 from _config import SYSTEM_CONTEXT, USER_CONTEXT, OLLAMA_OPTIONS
 
 
